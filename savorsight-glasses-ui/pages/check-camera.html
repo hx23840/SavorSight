@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>拍照检查</title>
+    <style id="theme-vars">
+/* SavorSight Glasses Bare UI — Rokid Glasses Design System */
+
+:root {
+  /* Color */
+  --glasses-bg: #000000;
+  --glasses-fg: #00FF00;
+  --glasses-fg-dim: #00FF004D;
+  --glasses-fg-muted: #00FF00BF;
+  --glasses-stroke-thin: 1px;
+  --glasses-stroke-normal: 2px;
+  --glasses-stroke-emphasis: 2.5px;
+
+  /* State colors */
+  --state-pass: #00FF00;
+  --state-continue: #00CC00;
+  --state-adjust: #009900;
+  --state-uncertain: #006600;
+  --state-error: #003300;
+
+  /* Typography */
+  --font-family: system-ui, -apple-system, sans-serif;
+  --title-size: 15px;
+  --subtitle-size: 11px;
+  --body-size: 12px;
+  --body-large-size: 14px;
+  --caption-size: 10px;
+  --legend-size: 11px;
+  --hero-size: 17px;
+
+  /* Spacing */
+  --screen-pad-h: 10px;
+  --header-h: 34px;
+  --legend-h: 72px;
+  --panel-pad: 10px;
+  --line-gap: 6px;
+  --safe-top: 80px;
+  --safe-bottom: 560px;
+
+  /* Layout */
+  --screen-width: 480px;
+  --screen-height: 640px;
+  --safe-height: 480px;
+}
+
+@theme inline {
+  --color-background: var(--glasses-bg);
+  --color-foreground: var(--glasses-fg);
+  --color-primary: var(--glasses-fg);
+  --color-muted-foreground: var(--glasses-fg-muted);
+  --color-muted: var(--glasses-fg-dim);
+  --font-sans: var(--font-family);
+}
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4.3.1/dist/index.global.js"></script>
+    <script src="https://unpkg.com/lucide@1.8.0/dist/umd/lucide.min.js"></script>
+    <style type="text/tailwindcss">
+  
+  @layer base {
+    body { background: var(--glasses-background); color: var(--glasses-foreground); }
+    td, th { @apply break-words; word-break: break-all; word-break: auto-phrase; }
+    th { @apply whitespace-nowrap; }
+  }
+    </style>
+    <style>
+      .no-scrollbar::-webkit-scrollbar { display: none; }
+      .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+      [data-icon] {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        -webkit-mask-size: contain;
+        mask-size: contain;
+        -webkit-mask-repeat: no-repeat;
+        mask-repeat: no-repeat;
+        -webkit-mask-position: center;
+        mask-position: center;
+        background-color: currentColor;
+      }
+    </style>
+</head>
+<body style="margin:0;padding:0;background:var(--glasses-bg);color:var(--glasses-fg);font-family:var(--font-family);width:480px;height:640px;overflow:hidden;position:relative;">
+
+    <!-- Header: y=0~80 -->
+    <div style="position:absolute;top:0;left:0;width:480px;height:80px;display:flex;align-items:center;justify-content:center;">
+        <span style="font-size:15px;font-weight:bold;letter-spacing:2px;color:var(--glasses-fg);">拍照检查</span>
+    </div>
+
+    <!-- Safe area: y=80~560, centered vertically and horizontally -->
+    <main style="position:absolute;top:80px;left:0;width:480px;height:480px;display:flex;flex-direction:column;align-items:center;justify-content:center;">
+
+        <!-- Viewfinder frame: 280x180, 4 corner lines only (stroke, no full border) -->
+        <div style="position:relative;width:280px;height:180px;">
+
+            <!-- Corner TL -->
+            <div style="position:absolute;top:0;left:0;width:20px;height:20px;border-top:2px solid var(--glasses-fg);border-left:2px solid var(--glasses-fg);"></div>
+            <!-- Corner TR -->
+            <div style="position:absolute;top:0;right:0;width:20px;height:20px;border-top:2px solid var(--glasses-fg);border-right:2px solid var(--glasses-fg);"></div>
+            <!-- Corner BL -->
+            <div style="position:absolute;bottom:0;left:0;width:20px;height:20px;border-bottom:2px solid var(--glasses-fg);border-left:2px solid var(--glasses-fg);"></div>
+            <!-- Corner BR -->
+            <div style="position:absolute;bottom:0;right:0;width:20px;height:20px;border-bottom:2px solid var(--glasses-fg);border-right:2px solid var(--glasses-fg);"></div>
+
+            <!-- Cross-hair center: thin + lines -->
+            <!-- Horizontal -->
+            <div style="position:absolute;top:50%;left:20px;right:20px;height:0;border-top:1px solid var(--glasses-fg-dim);transform:translateY(-50%);"></div>
+            <!-- Vertical -->
+            <div style="position:absolute;left:50%;top:20px;bottom:20px;width:0;border-left:1px solid var(--glasses-fg-dim);transform:translateX(-50%);"></div>
+
+        </div>
+
+        <!-- Step info (20px below viewfinder) -->
+        <div style="margin-top:20px;text-align:center;">
+            <div style="font-size:15px;font-weight:bold;color:var(--glasses-fg);margin-bottom:3px;">第1步: 炒鸡蛋</div>
+            <div style="font-size:13px;color:var(--glasses-fg-muted);">目标: 鸡蛋半凝固</div>
+        </div>
+
+        <!-- Blinking indicator -->
+        <div style="margin-top:16px;text-align:center;">
+            <span class="blink-dot" style="display:inline-block;width:6px;height:6px;border-radius:50%;border:1px solid var(--glasses-fg);vertical-align:middle;margin-right:5px;"></span>
+            <span style="font-size:13px;color:var(--glasses-fg);vertical-align:middle;">相机就绪</span>
+        </div>
+
+        <!-- Ready text -->
+        <div style="margin-top:16px;text-align:center;">
+            <span style="font-size:18px;font-weight:bold;color:var(--glasses-fg);">准备就绪</span>
+        </div>
+
+    </main>
+
+    <!-- Bottom hints -->
+    <div style="position:absolute;bottom:0;left:0;width:480px;height:80px;display:flex;flex-direction:column;align-items:center;justify-content:center;border-top:1px solid var(--glasses-fg-dim);">
+        <span style="font-size:12px;color:var(--glasses-fg-muted);margin-bottom:3px;">单击 → 拍照</span>
+        <span style="font-size:12px;color:var(--glasses-fg-muted);">双击 → 返回</span>
+    </div>
+
+
+    <style>
+      .no-scrollbar::-webkit-scrollbar { display: none; }
+      .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+      [data-icon] {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        -webkit-mask-size: contain;
+        mask-size: contain;
+        -webkit-mask-repeat: no-repeat;
+        mask-repeat: no-repeat;
+        -webkit-mask-position: center;
+        mask-position: center;
+        background-color: currentColor;
+      }
+
+      @keyframes blink-dot {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0; }
+      }
+      .blink-dot {
+        animation: blink-dot 1s step-end infinite;
+      }
+    </style>
+</body>
+</html>

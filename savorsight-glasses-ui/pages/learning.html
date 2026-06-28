@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>学习模式</title>
+    <style id="theme-vars">
+/* SavorSight Glasses Bare UI — Rokid Glasses Design System */
+
+:root {
+  /* Color */
+  --glasses-bg: #000000;
+  --glasses-fg: #00FF00;
+  --glasses-fg-dim: #00FF004D;
+  --glasses-fg-muted: #00FF00BF;
+  --glasses-stroke-thin: 1px;
+  --glasses-stroke-normal: 2px;
+  --glasses-stroke-emphasis: 2.5px;
+
+  /* State colors */
+  --state-pass: #00FF00;
+  --state-continue: #00CC00;
+  --state-adjust: #009900;
+  --state-uncertain: #006600;
+  --state-error: #003300;
+
+  /* Typography */
+  --font-family: system-ui, -apple-system, sans-serif;
+  --title-size: 15px;
+  --subtitle-size: 11px;
+  --body-size: 12px;
+  --body-large-size: 14px;
+  --caption-size: 10px;
+  --legend-size: 11px;
+  --hero-size: 17px;
+
+  /* Spacing */
+  --screen-pad-h: 10px;
+  --header-h: 34px;
+  --legend-h: 72px;
+  --panel-pad: 10px;
+  --line-gap: 6px;
+  --safe-top: 80px;
+  --safe-bottom: 560px;
+
+  /* Layout */
+  --screen-width: 480px;
+  --screen-height: 640px;
+  --safe-height: 480px;
+}
+
+@theme inline {
+  --color-background: var(--glasses-bg);
+  --color-foreground: var(--glasses-fg);
+  --color-primary: var(--glasses-fg);
+  --color-muted-foreground: var(--glasses-fg-muted);
+  --color-muted: var(--glasses-fg-dim);
+  --font-sans: var(--font-family);
+}
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4.3.1/dist/index.global.js"></script>
+    <script src="https://unpkg.com/lucide@1.8.0/dist/umd/lucide.min.js"></script>
+    <style type="text/tailwindcss">
+  
+  @layer base {
+    body { background: var(--glasses-background); color: var(--glasses-foreground); }
+    td, th { @apply break-words; word-break: break-all; word-break: auto-phrase; }
+    th { @apply whitespace-nowrap; }
+  }
+    </style>
+    <style>
+      .no-scrollbar::-webkit-scrollbar { display: none; }
+      .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+      [data-icon] {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        -webkit-mask-size: contain;
+        mask-size: contain;
+        -webkit-mask-repeat: no-repeat;
+        mask-repeat: no-repeat;
+        -webkit-mask-position: center;
+        mask-position: center;
+        background-color: currentColor;
+      }
+    </style>
+</head>
+<body style="
+  margin: 0;
+  padding: 0;
+  width: 480px;
+  height: 640px;
+  background: var(--glasses-bg);
+  color: var(--glasses-fg);
+  font-family: var(--font-family);
+  overflow: hidden;
+  position: relative;
+  -webkit-font-smoothing: none;
+  -moz-osx-font-smoothing: unset;
+">
+
+  <style>
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
+    }
+    .blink {
+      animation: blink 1s step-end infinite;
+    }
+  </style>
+
+  <!-- Header (y=0~80) -->
+  <div style="
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 480px;
+    height: 80px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+  ">
+    <div style="
+      font-size: 15px;
+      font-weight: bold;
+      color: var(--glasses-fg);
+      letter-spacing: 2px;
+      line-height: 1;
+    ">见味·学习</div>
+    <div style="
+      font-size: 11px;
+      color: var(--glasses-fg-muted);
+      margin-top: 4px;
+      letter-spacing: 1px;
+    ">采集中</div>
+  </div>
+
+  <!-- Safe area content (y=80~560) -->
+  <div style="
+    position: absolute;
+    top: 80px;
+    left: 10px;
+    width: 460px;
+    height: 480px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    padding: 20px 40px;
+  ">
+    <!-- REC indicator -->
+    <div class="blink" style="
+      font-size: 17px;
+      font-weight: bold;
+      color: var(--glasses-fg);
+      letter-spacing: 4px;
+      text-align: center;
+      margin-bottom: 16px;
+    ">● REC</div>
+
+    <!-- Thin separator line -->
+    <div style="
+      width: 280px;
+      height: 0;
+      border-top: 1px solid var(--glasses-fg);
+      margin-bottom: 20px;
+    "></div>
+
+    <!-- Info block (stroke border box) -->
+    <div style="
+      width: 280px;
+      border: 1px solid var(--glasses-fg);
+      padding: 16px 20px;
+      box-sizing: border-box;
+      margin-bottom: 24px;
+    ">
+      <div style="
+        font-size: 14px;
+        color: var(--glasses-fg);
+        line-height: 2.2;
+        font-variant-numeric: tabular-nums;
+      ">
+        <div>视频帧<span style="display:inline-block;width:12px;"></span>1,247</div>
+        <div>音频<span style="display:inline-block;width:20px;"></span>2.3 MB</div>
+        <div>会话<span style="display:inline-block;width:20px;"></span>learn-001</div>
+      </div>
+    </div>
+
+    <!-- Live transmission indicator -->
+    <div style="
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    ">
+      <span class="blink" style="
+        font-size: 8px;
+        color: var(--glasses-fg);
+        line-height: 1;
+      ">●</span>
+      <span style="
+        font-size: 12px;
+        color: var(--glasses-fg);
+        letter-spacing: 0.5px;
+      ">实时传输中</span>
+    </div>
+  </div>
+
+  <!-- Bottom hints -->
+  <div style="
+    position: absolute;
+    top: 560px;
+    left: 0;
+    width: 480px;
+    height: 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0 20px;
+    border-top: 1px solid var(--glasses-fg-dim);
+  ">
+    <div style="
+      font-size: 12px;
+      color: var(--glasses-fg-muted);
+      letter-spacing: 0.5px;
+      text-align: center;
+    ">单击 → 停止学习</div>
+    <div style="
+      font-size: 12px;
+      color: var(--glasses-fg-muted);
+      letter-spacing: 0.5px;
+      text-align: center;
+    ">双击 → 返回</div>
+  </div>
+
+</body>
+</html>

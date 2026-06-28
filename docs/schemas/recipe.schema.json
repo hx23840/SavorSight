@@ -1,0 +1,75 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://savorsight.local/schemas/recipe.schema.json",
+  "title": "SavorSight Recipe",
+  "type": "object",
+  "required": [
+    "recipeId",
+    "sourceSessionId",
+    "dishName",
+    "confidence",
+    "ingredients",
+    "seasonings",
+    "steps",
+    "uncertainFields"
+  ],
+  "properties": {
+    "recipeId": { "type": "string" },
+    "sourceSessionId": { "type": "string", "format": "uuid" },
+    "dishName": { "type": "string" },
+    "confidence": { "type": "number", "minimum": 0, "maximum": 1 },
+    "servings": { "type": ["integer", "null"], "minimum": 1 },
+    "estimatedTimeMinutes": { "type": ["integer", "null"], "minimum": 1 },
+    "ingredients": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["name", "amount"],
+        "properties": {
+          "name": { "type": "string" },
+          "amount": { "type": "string" },
+          "prep": { "type": ["string", "null"] }
+        }
+      }
+    },
+    "seasonings": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["name", "amount"],
+        "properties": {
+          "name": { "type": "string" },
+          "amount": { "type": "string" }
+        }
+      }
+    },
+    "steps": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["id", "title", "instruction", "checkable", "confidence"],
+        "properties": {
+          "id": { "type": "string" },
+          "title": { "type": "string" },
+          "instruction": { "type": "string" },
+          "heat": { "type": ["string", "null"] },
+          "targetState": { "type": ["string", "null"] },
+          "checkable": { "type": "boolean" },
+          "confidence": { "type": "number", "minimum": 0, "maximum": 1 }
+        }
+      }
+    },
+    "uncertainFields": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["field", "question"],
+        "properties": {
+          "field": { "type": "string" },
+          "question": { "type": "string" }
+        }
+      }
+    }
+  }
+}

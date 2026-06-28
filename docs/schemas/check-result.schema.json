@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://savorsight.local/schemas/check-result.schema.json",
+  "title": "SavorSight Check Result",
+  "type": "object",
+  "required": ["status", "confidence", "summary", "suggestion", "tts"],
+  "properties": {
+    "status": {
+      "type": "string",
+      "enum": ["pass", "continue", "adjust", "uncertain"]
+    },
+    "confidence": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "summary": { "type": "string" },
+    "suggestion": { "type": "string" },
+    "tts": { "type": "string" }
+  }
+}

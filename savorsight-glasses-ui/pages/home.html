@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>首页</title>
+    <style id="theme-vars">
+/* SavorSight Glasses Bare UI — Rokid Glasses Design System */
+
+:root {
+  /* Color */
+  --glasses-bg: #000000;
+  --glasses-fg: #00FF00;
+  --glasses-fg-dim: #00FF004D;
+  --glasses-fg-muted: #00FF00BF;
+  --glasses-stroke-thin: 1px;
+  --glasses-stroke-normal: 2px;
+  --glasses-stroke-emphasis: 2.5px;
+
+  /* State colors */
+  --state-pass: #00FF00;
+  --state-continue: #00CC00;
+  --state-adjust: #009900;
+  --state-uncertain: #006600;
+  --state-error: #003300;
+
+  /* Typography */
+  --font-family: system-ui, -apple-system, sans-serif;
+  --title-size: 15px;
+  --subtitle-size: 11px;
+  --body-size: 12px;
+  --body-large-size: 14px;
+  --caption-size: 10px;
+  --legend-size: 11px;
+  --hero-size: 17px;
+
+  /* Spacing */
+  --screen-pad-h: 10px;
+  --header-h: 34px;
+  --legend-h: 72px;
+  --panel-pad: 10px;
+  --line-gap: 6px;
+  --safe-top: 80px;
+  --safe-bottom: 560px;
+
+  /* Layout */
+  --screen-width: 480px;
+  --screen-height: 640px;
+  --safe-height: 480px;
+}
+
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4.3.1/dist/index.global.js"></script>
+    <script src="https://unpkg.com/lucide@1.8.0/dist/umd/lucide.min.js"></script>
+    <style type="text/tailwindcss">
+  
+  @layer base {
+    body { background: var(--glasses-background); color: var(--glasses-foreground); }
+    td, th { @apply break-words; word-break: break-all; word-break: auto-phrase; }
+    th { @apply whitespace-nowrap; }
+  }
+
+@theme inline {
+  --color-background: var(--glasses-bg);
+  --color-foreground: var(--glasses-fg);
+  --color-primary: var(--glasses-fg);
+  --color-muted-foreground: var(--glasses-fg-muted);
+  --color-muted: var(--glasses-fg-dim);
+  --font-sans: var(--font-family);
+}
+    </style>
+    <style>
+      .no-scrollbar::-webkit-scrollbar { display: none; }
+      .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+      [data-icon] {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        -webkit-mask-size: contain;
+        mask-size: contain;
+        -webkit-mask-repeat: no-repeat;
+        mask-repeat: no-repeat;
+        -webkit-mask-position: center;
+        mask-position: center;
+        background-color: currentColor;
+      }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <div class="header">
+        <span class="header__title">见味</span>
+        <span class="header__subtitle">AI 智能烹饪助手</span>
+    </div>
+
+    <!-- Safe Area -->
+    <div class="safe-area">
+        <!-- Decorative Frame -->
+        <div class="frame">
+            <span class="frame__brand">见味</span>
+            <div class="frame__separator"></div>
+            <span class="frame__english">SavorSight</span>
+        </div>
+
+        <!-- Status -->
+        <span class="status-ready">准备就绪</span>
+        <div class="status-line"></div>
+        <span class="status-hint">等待操作...</span>
+    </div>
+
+    <!-- Bottom Hint -->
+    <div class="bottom-hint">
+        <div class="bottom-hint__divider"></div>
+        <div class="bottom-hint__row">
+            <span class="bottom-hint__primary">单击 → 开始</span>
+        </div>
+        <div class="bottom-hint__row">
+            <span class="bottom-hint__secondary">双击 → 无</span>
+        </div>
+    </div>
+
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      html, body {
+        width: 480px;
+        height: 640px;
+        overflow: hidden;
+        background: var(--glasses-bg);
+        color: var(--glasses-fg);
+        font-family: var(--font-family);
+        -webkit-font-smoothing: antialiased;
+      }
+
+      /* --- Header (y=0~80) --- */
+      .header {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 480px;
+        height: 80px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .header__title {
+        font-size: 20px;
+        font-weight: 700;
+        color: var(--glasses-fg);
+        line-height: 1.3;
+      }
+
+      .header__subtitle {
+        font-size: 12px;
+        color: var(--glasses-fg-muted);
+        line-height: 1.4;
+      }
+
+      /* --- Safe Area (y=80~560) --- */
+      .safe-area {
+        position: absolute;
+        top: 80px;
+        left: 0;
+        width: 480px;
+        height: 480px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+
+      /* Decorative frame */
+      .frame {
+        width: 320px;
+        height: 200px;
+        border: 1.5px solid var(--glasses-fg);
+        border-radius: 4px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .frame__brand {
+        font-size: 28px;
+        font-weight: 700;
+        color: var(--glasses-fg);
+        line-height: 1.2;
+      }
+
+      .frame__separator {
+        width: 60px;
+        height: 1px;
+        background: var(--glasses-fg);
+        margin: 8px 0;
+      }
+
+      .frame__english {
+        font-size: 14px;
+        color: var(--glasses-fg-muted);
+        letter-spacing: 3px;
+        line-height: 1.3;
+      }
+
+      /* Below frame */
+      .status-ready {
+        margin-top: 24px;
+        font-size: 13px;
+        color: var(--glasses-fg);
+        text-align: center;
+      }
+
+      .status-line {
+        width: 200px;
+        height: 1px;
+        background: var(--glasses-fg);
+        margin-top: 16px;
+      }
+
+      .status-hint {
+        margin-top: 12px;
+        font-size: 12px;
+        color: var(--glasses-fg-muted);
+        text-align: center;
+      }
+
+      /* --- Bottom Hint (y=560~640) --- */
+      .bottom-hint {
+        position: absolute;
+        top: 560px;
+        left: 0;
+        width: 480px;
+        height: 80px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 0 20px;
+        border-top: 1px solid var(--glasses-fg-dim);
+      }
+
+      .bottom-hint__divider {
+        display: none;
+      }
+
+      .bottom-hint__row {
+        display: flex;
+        align-items: center;
+        height: 22px;
+      }
+
+      .bottom-hint__primary {
+        font-size: 12px;
+        color: var(--glasses-fg);
+      }
+
+      .bottom-hint__secondary {
+        font-size: 12px;
+        color: var(--glasses-fg-muted);
+      }
+    </style>
+</body>
+</html>

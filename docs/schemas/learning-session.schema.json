@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://savorsight.local/schemas/learning-session.schema.json",
+  "title": "SavorSight Learning Session",
+  "type": "object",
+  "required": [
+    "sessionId",
+    "sourceMode",
+    "capturePolicy",
+    "status",
+    "rawVideoChunks",
+    "rawAudioChunks",
+    "statusEvents",
+    "createdAt",
+    "updatedAt"
+  ],
+  "properties": {
+    "sessionId": { "type": "string", "format": "uuid" },
+    "deviceId": { "type": ["string", "null"] },
+    "sourceMode": { "type": "string" },
+    "capturePolicy": { "type": "string" },
+    "status": {
+      "type": "string",
+      "enum": ["created", "capturing", "uploaded", "processing", "draft_ready", "failed"]
+    },
+    "rawVideoChunks": { "type": "integer", "minimum": 0 },
+    "rawAudioChunks": { "type": "integer", "minimum": 0 },
+    "statusEvents": { "type": "integer", "minimum": 0 },
+    "createdAt": { "type": "string", "format": "date-time" },
+    "updatedAt": { "type": "string", "format": "date-time" }
+  }
+}

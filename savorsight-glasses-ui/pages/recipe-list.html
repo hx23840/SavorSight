@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>菜谱列表 — 见味</title>
+    <style id="theme-vars">
+/* SavorSight Glasses Bare UI — Rokid Glasses Design System */
+
+:root {
+  /* Color */
+  --glasses-bg: #000000;
+  --glasses-fg: #00FF00;
+  --glasses-fg-dim: #00FF004D;
+  --glasses-fg-muted: #00FF00BF;
+  --glasses-stroke-thin: 1px;
+  --glasses-stroke-normal: 2px;
+  --glasses-stroke-emphasis: 2.5px;
+
+  /* State colors */
+  --state-pass: #00FF00;
+  --state-continue: #00CC00;
+  --state-adjust: #009900;
+  --state-uncertain: #006600;
+  --state-error: #003300;
+
+  /* Typography */
+  --font-family: system-ui, -apple-system, sans-serif;
+  --title-size: 15px;
+  --subtitle-size: 11px;
+  --body-size: 12px;
+  --body-large-size: 14px;
+  --caption-size: 10px;
+  --legend-size: 11px;
+  --hero-size: 17px;
+
+  /* Spacing */
+  --screen-pad-h: 10px;
+  --header-h: 34px;
+  --legend-h: 72px;
+  --panel-pad: 10px;
+  --line-gap: 6px;
+  --safe-top: 80px;
+  --safe-bottom: 560px;
+
+  /* Layout */
+  --screen-width: 480px;
+  --screen-height: 640px;
+  --safe-height: 480px;
+}
+
+@theme inline {
+  --color-background: var(--glasses-bg);
+  --color-foreground: var(--glasses-fg);
+  --color-primary: var(--glasses-fg);
+  --color-muted-foreground: var(--glasses-fg-muted);
+  --color-muted: var(--glasses-fg-dim);
+  --font-sans: var(--font-family);
+}
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4.3.1/dist/index.global.js"></script>
+    <script src="https://unpkg.com/lucide@1.8.0/dist/umd/lucide.min.js"></script>
+    <style type="text/tailwindcss">
+  
+  @layer base {
+    body { background: var(--glasses-background); color: var(--glasses-foreground); }
+    td, th { @apply break-words; word-break: break-all; word-break: auto-phrase; }
+    th { @apply whitespace-nowrap; }
+  }
+    </style>
+    <style>
+      .no-scrollbar::-webkit-scrollbar { display: none; }
+      .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+      [data-icon] {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        -webkit-mask-size: contain;
+        mask-size: contain;
+        -webkit-mask-repeat: no-repeat;
+        mask-repeat: no-repeat;
+        -webkit-mask-position: center;
+        mask-position: center;
+        background-color: currentColor;
+      }
+    </style>
+</head>
+<body>
+    <main class="screen">
+
+        <!-- Header area (y=0~80): title + page indicator -->
+        <div class="header">
+            <div class="header-title">见味</div>
+            <div class="header-indicator">1/3</div>
+        </div>
+
+        <!-- Safe area center: ONE recipe card -->
+        <div class="safe-content">
+
+            <!-- Single recipe card: 番茄炒蛋 -->
+            <div class="recipe-card">
+                <span class="recipe-card__index">1</span>
+                <div class="recipe-card__name">番茄炒蛋</div>
+                <div class="recipe-card__meta">2人份 · 约15分钟</div>
+                <div class="recipe-card__sep"></div>
+                <div class="recipe-card__confidence">置信度 86%</div>
+            </div>
+
+        </div>
+
+        <!-- Bottom hint area (y=560~640): plain text, NOT buttons -->
+        <div class="hint-bar">
+            <div class="hint-line">单击 → 下一菜谱</div>
+            <div class="hint-line">长按 → 查看详情</div>
+            <div class="hint-line hint-line--muted">双击 → 返回</div>
+        </div>
+
+    </main>
+
+    <style>
+      *, *::before, *::after {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      html, body {
+        width: var(--screen-width);
+        height: var(--screen-height);
+        background: var(--glasses-bg);
+        color: var(--glasses-fg);
+        font-family: var(--font-family);
+        overflow: hidden;
+        -webkit-font-smoothing: none;
+      }
+
+      /* === Screen container === */
+      .screen {
+        position: relative;
+        width: var(--screen-width);
+        height: var(--screen-height);
+        background: var(--glasses-bg);
+      }
+
+      /* === Header area (y=0~80) === */
+      .header {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: var(--safe-top);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .header-title {
+        font-size: var(--title-size);
+        font-weight: bold;
+        color: var(--glasses-fg);
+        letter-spacing: 4px;
+      }
+
+      .header-indicator {
+        font-size: var(--subtitle-size);
+        color: var(--glasses-fg-muted);
+        margin-top: 4px;
+      }
+
+      /* === Safe content area: vertically & horizontally centered === */
+      .safe-content {
+        position: absolute;
+        top: var(--safe-top);
+        left: var(--screen-pad-h);
+        right: var(--screen-pad-h);
+        height: var(--safe-height);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      /* === Recipe card (stroke only, no fill) === */
+      .recipe-card {
+        position: relative;
+        width: 320px;
+        border: 2px solid var(--glasses-fg);
+        background: transparent;
+        padding: 24px 40px 20px 24px;
+        text-align: center;
+      }
+
+      .recipe-card__name {
+        font-size: 18px;
+        font-weight: bold;
+        color: var(--glasses-fg);
+        line-height: 1.4;
+      }
+
+      .recipe-card__meta {
+        font-size: 13px;
+        color: var(--glasses-fg-muted);
+        margin-top: 6px;
+      }
+
+      .recipe-card__sep {
+        width: 100%;
+        height: 1px;
+        background: var(--glasses-fg);
+        margin: 14px 0;
+        opacity: 0.5;
+      }
+
+      .recipe-card__confidence {
+        font-size: 14px;
+        color: var(--glasses-fg);
+      }
+
+      /* Circled index number in top-right corner of card */
+      .recipe-card__index {
+        position: absolute;
+        top: -10px;
+        right: -10px;
+        width: 24px;
+        height: 24px;
+        border: 1.5px solid var(--glasses-fg);
+        border-radius: 50%;
+        background: var(--glasses-bg);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: var(--subtitle-size);
+        font-weight: bold;
+        color: var(--glasses-fg);
+      }
+
+      /* === Bottom hint bar (y=560~640): plain text labels === */
+      .hint-bar {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 80px;
+        border-top: 1px solid var(--glasses-fg);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 0 10px;
+        gap: 6px;
+      }
+
+      .hint-line {
+        font-size: var(--body-size);
+        color: var(--glasses-fg);
+        line-height: 1.4;
+      }
+
+      .hint-line--muted {
+        color: var(--glasses-fg-muted);
+      }
+    </style>
+</body>
+</html>

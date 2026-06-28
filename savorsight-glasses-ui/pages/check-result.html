@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>检查结果</title>
+    <style id="theme-vars">
+/* SavorSight Glasses Bare UI — Rokid Glasses Design System */
+
+:root {
+  /* Color */
+  --glasses-bg: #000000;
+  --glasses-fg: #00FF00;
+  --glasses-fg-dim: #00FF004D;
+  --glasses-fg-muted: #00FF00BF;
+  --glasses-stroke-thin: 1px;
+  --glasses-stroke-normal: 2px;
+  --glasses-stroke-emphasis: 2.5px;
+
+  /* State colors */
+  --state-pass: #00FF00;
+  --state-continue: #00CC00;
+  --state-adjust: #009900;
+  --state-uncertain: #006600;
+  --state-error: #003300;
+
+  /* Typography */
+  --font-family: system-ui, -apple-system, sans-serif;
+  --title-size: 15px;
+  --subtitle-size: 11px;
+  --body-size: 12px;
+  --body-large-size: 14px;
+  --caption-size: 10px;
+  --legend-size: 11px;
+  --hero-size: 17px;
+
+  /* Spacing */
+  --screen-pad-h: 10px;
+  --header-h: 34px;
+  --legend-h: 72px;
+  --panel-pad: 10px;
+  --line-gap: 6px;
+  --safe-top: 80px;
+  --safe-bottom: 560px;
+
+  /* Layout */
+  --screen-width: 480px;
+  --screen-height: 640px;
+  --safe-height: 480px;
+}
+
+@theme inline {
+  --color-background: var(--glasses-bg);
+  --color-foreground: var(--glasses-fg);
+  --color-primary: var(--glasses-fg);
+  --color-muted-foreground: var(--glasses-fg-muted);
+  --color-muted: var(--glasses-fg-dim);
+  --font-sans: var(--font-family);
+}
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4.3.1/dist/index.global.js"></script>
+    <script src="https://unpkg.com/lucide@1.8.0/dist/umd/lucide.min.js"></script>
+    <style type="text/tailwindcss">
+  
+  @layer base {
+    body { background: var(--glasses-background); color: var(--glasses-foreground); }
+    td, th { @apply break-words; word-break: break-all; word-break: auto-phrase; }
+    th { @apply whitespace-nowrap; }
+  }
+    </style>
+    <style>
+      .no-scrollbar::-webkit-scrollbar { display: none; }
+      .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+      [data-icon] {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        -webkit-mask-size: contain;
+        mask-size: contain;
+        -webkit-mask-repeat: no-repeat;
+        mask-repeat: no-repeat;
+        -webkit-mask-position: center;
+        mask-position: center;
+        background-color: currentColor;
+      }
+    </style>
+</head>
+<body>
+      <!-- Header: y=0~80 -->
+      <div class="header-bar">
+        <div class="header-title">检查结果</div>
+        <div class="header-page">1/2</div>
+      </div>
+
+      <!-- Page dots: below header -->
+      <div class="page-dots-bar">
+        <div class="dot filled"></div>
+        <div class="dot"></div>
+      </div>
+
+      <!-- Safe area content: y=80~560 -->
+      <div class="safe-area">
+        <div class="main-content">
+
+          <!-- Status line: plain styled text, NOT a badge/card/button -->
+          <div class="status-line">○ <span class="status-highlight">继续</span>当前</div>
+
+          <!-- Thin separator -->
+          <div class="separator-yellow"></div>
+
+          <!-- Label: 判断 -->
+          <div class="label-text">判断</div>
+
+          <!-- Thin green line -->
+          <div class="separator-green"></div>
+
+          <!-- Summary text -->
+          <div class="summary-text">鸡蛋还偏湿，边缘已开始凝固。</div>
+
+          <!-- Gap (flex spacer) -->
+          <div class="spacer"></div>
+
+          <!-- Hint -->
+          <div class="hint-text">单击查看详细建议</div>
+
+        </div>
+
+        <!-- Bottom hints: plain text, NO buttons, NO bordered badges -->
+        <div class="bottom-hints">
+          <div class="hint-row">单击 → 查看建议</div>
+          <div class="hint-row">长按 → 重读</div>
+          <div class="hint-row">双击 → 返回</div>
+        </div>
+    </div>
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        background: var(--glasses-bg);
+        color: var(--glasses-fg);
+        font-family: system-ui, -apple-system, sans-serif;
+        width: 480px;
+        height: 640px;
+        overflow: hidden;
+        position: relative;
+        -webkit-font-smoothing: none;
+        -moz-osx-font-smoothing: unset;
+      }
+      .safe-area {
+        position: absolute;
+        top: 80px;
+        left: 10px;
+        right: 10px;
+        bottom: 80px;
+      }
+
+      /* Main content flex column */
+      .main-content {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+      }
+
+      /* Header bar: y=0~80 */
+      .header-bar {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 60px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 20px;
+      }
+      .header-title {
+        font-size: 15px;
+        font-weight: bold;
+        color: var(--glasses-fg);
+        letter-spacing: 1px;
+      }
+      .header-page {
+        font-size: 11px;
+        color: var(--glasses-fg);
+        opacity: 0.7;
+      }
+
+      /* Page dots: y=60~80 */
+      .page-dots-bar {
+        position: absolute;
+        top: 64px;
+        left: 0;
+        right: 0;
+        display: flex;
+        justify-content: center;
+        gap: 8px;
+      }
+
+      .dot {
+        width: 8px;
+        height: 8px;
+        border: 1.5px solid var(--glasses-fg);
+        background: transparent;
+      }
+      .dot.filled {
+        border: 1.5px solid var(--glasses-fg);
+        background: transparent;
+        position: relative;
+      }
+      .dot.filled::after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 3px;
+        height: 3px;
+        border-radius: 50%;
+        background: var(--glasses-fg);
+        transform: translate(-50%, -50%);
+      }
+
+      /* Status line: pure text, centered, 20px bold */
+      .status-line {
+        font-size: 20px;
+        font-weight: bold;
+        color: var(--glasses-fg);
+        text-align: center;
+        margin-bottom: 16px;
+      }
+      .status-highlight {
+        color: var(--glasses-fg);
+        font-weight: bold;
+      }
+
+      /* Thin separator (was yellow) */
+      .separator-yellow {
+        width: 100%;
+        height: 1px;
+        background: var(--glasses-fg-dim);
+        margin-bottom: 12px;
+      }
+
+      /* Label: 判断 */
+      .label-text {
+        font-size: 12px;
+        color: var(--glasses-fg);
+        opacity: 0.5;
+        margin-bottom: 6px;
+      }
+
+      /* Thin green line */
+      .separator-green {
+        width: 100%;
+        height: 1px;
+        background: var(--glasses-fg);
+        opacity: 0.3;
+        margin-bottom: 16px;
+      }
+
+      /* Summary text: 18px, centered, max 3 lines */
+      .summary-text {
+        font-size: 18px;
+        color: var(--glasses-fg);
+        text-align: center;
+        line-height: 24px;
+        max-height: 72px; /* 3 lines * 24px */
+        overflow: hidden;
+      }
+
+      /* Spacer */
+      .spacer {
+        flex: 1;
+      }
+
+      /* Hint text */
+      .hint-text {
+        font-size: 12px;
+        color: var(--glasses-fg);
+        opacity: 0.6;
+        text-align: center;
+      }
+
+      /* Bottom hints: plain text rows */
+      .bottom-hints {
+        position: absolute;
+        top: 560px;
+        left: 0;
+        width: 480px;
+        height: 80px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 0 20px;
+        border-top: 1px solid var(--glasses-fg);
+      }
+      .hint-row {
+        font-size: 12px;
+        color: var(--glasses-fg);
+        opacity: 0.7;
+        margin-bottom: 6px;
+      }
+      .hint-row.muted {
+        opacity: 0.5;
+        color: var(--glasses-fg-muted);
+      }
+      .hint-row:last-child {
+        margin-bottom: 0;
+      }
+    </style>
+</body>
+</html>

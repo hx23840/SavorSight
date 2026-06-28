@@ -1,0 +1,283 @@
+{
+  "data": [
+    {
+      "id": "page-home",
+      "type": "page",
+      "title": "首页",
+      "version": 1,
+      "createdAt": 1782618278000,
+      "canvasData": {
+        "x": 0,
+        "y": 0,
+        "group": 0
+      },
+      "interactions": [
+        {
+          "type": "navigate",
+          "targetPageId": "page-scene-select",
+          "description": "单击 → 进入模式选择"
+        }
+      ],
+      "devMetadata": {
+        "htmlSrc": "pages/home.html"
+      }
+    },
+    {
+      "id": "page-scene-select",
+      "type": "page",
+      "title": "模式选择",
+      "version": 1,
+      "createdAt": 1782618278000,
+      "canvasData": {
+        "x": 420,
+        "y": 0,
+        "group": 0
+      },
+      "interactions": [
+        {
+          "type": "navigate",
+          "targetPageId": "page-scene-select-2",
+          "description": "单击 → 下一模式"
+        },
+        {
+          "type": "navigate",
+          "targetPageId": "page-recipe-list",
+          "description": "长按 → 进入菜谱模式"
+        },
+        {
+          "type": "navigate",
+          "targetPageId": "page-home",
+          "description": "双击 → 返回首页",
+          "hideEdge": true
+        }
+      ],
+      "devMetadata": {
+        "htmlSrc": "pages/scene-select.html"
+      }
+    },
+    {
+      "id": "page-scene-select-2",
+      "type": "page",
+      "title": "模式选择 P2",
+      "version": 1,
+      "createdAt": 1782618278000,
+      "canvasData": {
+        "x": 840,
+        "y": 0,
+        "group": 0
+      },
+      "interactions": [
+        {
+          "type": "navigate",
+          "targetPageId": "page-scene-select",
+          "description": "单击 → 上一模式"
+        },
+        {
+          "type": "navigate",
+          "targetPageId": "page-learning",
+          "description": "长按 → 进入学习模式"
+        },
+        {
+          "type": "navigate",
+          "targetPageId": "page-home",
+          "description": "双击 → 返回首页",
+          "hideEdge": true
+        }
+      ],
+      "devMetadata": {
+        "htmlSrc": "pages/scene-select-2.html"
+      }
+    },
+    {
+      "id": "page-recipe-list",
+      "type": "page",
+      "title": "菜谱列表",
+      "version": 1,
+      "createdAt": 1782616758000,
+      "canvasData": {
+        "x": 1260,
+        "y": 0,
+        "group": 0
+      },
+      "interactions": [
+        {
+          "type": "navigate",
+          "targetPageId": "page-recipe-detail",
+          "description": "长按 → 查看菜谱详情"
+        },
+        {
+          "type": "navigate",
+          "targetPageId": "page-scene-select",
+          "description": "双击 → 返回模式选择",
+          "hideEdge": true
+        }
+      ],
+      "devMetadata": {
+        "htmlSrc": "pages/recipe-list.html"
+      }
+    },
+    {
+      "id": "page-learning",
+      "type": "page",
+      "title": "学习模式",
+      "version": 1,
+      "createdAt": 1782616758000,
+      "canvasData": {
+        "x": 1680,
+        "y": 0,
+        "group": 0
+      },
+      "interactions": [
+        {
+          "type": "navigate",
+          "targetPageId": "page-recipe-draft",
+          "description": "单击 → 停止学习，查看草稿"
+        },
+        {
+          "type": "navigate",
+          "targetPageId": "page-scene-select-2",
+          "description": "双击 → 返回模式选择",
+          "hideEdge": true
+        }
+      ],
+      "devMetadata": {
+        "htmlSrc": "pages/learning.html"
+      }
+    },
+    {
+      "id": "page-recipe-draft",
+      "type": "page",
+      "title": "菜谱草稿",
+      "version": 1,
+      "createdAt": 1782616758000,
+      "canvasData": {
+        "x": 2100,
+        "y": 0,
+        "group": 0
+      },
+      "interactions": [
+        {
+          "type": "navigate",
+          "targetPageId": "page-scene-select",
+          "description": "双击 → 返回模式选择",
+          "hideEdge": true
+        }
+      ],
+      "devMetadata": {
+        "htmlSrc": "pages/recipe-draft.html"
+      }
+    },
+    {
+      "id": "page-recipe-detail",
+      "type": "page",
+      "title": "菜谱详情",
+      "version": 1,
+      "createdAt": 1782616758000,
+      "canvasData": {
+        "x": 2520,
+        "y": 0,
+        "group": 0
+      },
+      "interactions": [
+        {
+          "type": "navigate",
+          "targetPageId": "page-cooking-guide",
+          "description": "长按 → 开始做菜"
+        },
+        {
+          "type": "navigate",
+          "targetPageId": "page-recipe-list",
+          "description": "双击 → 返回菜谱列表",
+          "hideEdge": true
+        }
+      ],
+      "devMetadata": {
+        "htmlSrc": "pages/recipe-detail.html"
+      }
+    },
+    {
+      "id": "page-cooking-guide",
+      "type": "page",
+      "title": "做菜导航",
+      "version": 1,
+      "createdAt": 1782616758000,
+      "canvasData": {
+        "x": 2940,
+        "y": 0,
+        "group": 0
+      },
+      "interactions": [
+        {
+          "type": "navigate",
+          "targetPageId": "page-check-camera",
+          "description": "长按 → 拍照检查"
+        },
+        {
+          "type": "navigate",
+          "targetPageId": "page-recipe-list",
+          "description": "双击 → 结束做菜返回列表",
+          "hideEdge": true
+        }
+      ],
+      "devMetadata": {
+        "htmlSrc": "pages/cooking-guide.html"
+      }
+    },
+    {
+      "id": "page-check-camera",
+      "type": "page",
+      "title": "拍照检查",
+      "version": 1,
+      "createdAt": 1782616758000,
+      "canvasData": {
+        "x": 3360,
+        "y": 0,
+        "group": 0
+      },
+      "interactions": [
+        {
+          "type": "navigate",
+          "targetPageId": "page-check-result",
+          "description": "单击 → 拍照查看结果"
+        },
+        {
+          "type": "navigate",
+          "targetPageId": "page-cooking-guide",
+          "description": "双击 → 返回做菜导航",
+          "hideEdge": true
+        }
+      ],
+      "devMetadata": {
+        "htmlSrc": "pages/check-camera.html"
+      }
+    },
+    {
+      "id": "page-check-result",
+      "type": "page",
+      "title": "检查结果",
+      "version": 1,
+      "createdAt": 1782616758000,
+      "canvasData": {
+        "x": 3780,
+        "y": 0,
+        "group": 0
+      },
+      "interactions": [
+        {
+          "type": "navigate",
+          "targetPageId": "page-cooking-guide",
+          "description": "双击 → 返回做菜导航",
+          "hideEdge": true
+        }
+      ],
+      "devMetadata": {
+        "htmlSrc": "pages/check-result.html"
+      }
+    }
+  ],
+  "config": {
+    "autoLayout": true,
+    "deviceType": "mobile",
+    "projectName": "见味·眼镜裸机UI"
+  }
+}

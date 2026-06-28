@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>选择模式</title>
+    <style id="theme-vars">
+/* SavorSight Glasses Bare UI — Rokid Glasses Design System */
+
+:root {
+  /* Color */
+  --glasses-bg: #000000;
+  --glasses-fg: #00FF00;
+  --glasses-fg-dim: #00FF004D;
+  --glasses-fg-muted: #00FF00BF;
+  --glasses-stroke-thin: 1px;
+  --glasses-stroke-normal: 2px;
+  --glasses-stroke-emphasis: 2.5px;
+
+  /* State colors */
+  --state-pass: #00FF00;
+  --state-continue: #00CC00;
+  --state-adjust: #009900;
+  --state-uncertain: #006600;
+  --state-error: #003300;
+
+  /* Typography */
+  --font-family: system-ui, -apple-system, sans-serif;
+  --title-size: 15px;
+  --subtitle-size: 11px;
+  --body-size: 12px;
+  --body-large-size: 14px;
+  --caption-size: 10px;
+  --legend-size: 11px;
+  --hero-size: 17px;
+
+  /* Spacing */
+  --screen-pad-h: 10px;
+  --header-h: 34px;
+  --legend-h: 72px;
+  --panel-pad: 10px;
+  --line-gap: 6px;
+  --safe-top: 80px;
+  --safe-bottom: 560px;
+
+  /* Layout */
+  --screen-width: 480px;
+  --screen-height: 640px;
+  --safe-height: 480px;
+}
+
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4.3.1/dist/index.global.js"></script>
+    <script src="https://unpkg.com/lucide@1.8.0/dist/umd/lucide.min.js"></script>
+    <style type="text/tailwindcss">
+  
+  @layer base {
+    body { background: var(--glasses-background); color: var(--glasses-foreground); }
+    td, th { @apply break-words; word-break: break-all; word-break: auto-phrase; }
+    th { @apply whitespace-nowrap; }
+  }
+
+@theme inline {
+  --color-background: var(--glasses-bg);
+  --color-foreground: var(--glasses-fg);
+  --color-primary: var(--glasses-fg);
+  --color-muted-foreground: var(--glasses-fg-muted);
+  --color-muted: var(--glasses-fg-dim);
+  --font-sans: var(--font-family);
+}
+    </style>
+    <style>
+      .no-scrollbar::-webkit-scrollbar { display: none; }
+      .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+      [data-icon] {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        -webkit-mask-size: contain;
+        mask-size: contain;
+        -webkit-mask-repeat: no-repeat;
+        mask-repeat: no-repeat;
+        -webkit-mask-position: center;
+        mask-position: center;
+        background-color: currentColor;
+      }
+    </style>
+</head>
+<body>
+
+    <!-- Page indicator -->
+    <div class="page-indicator">1/2</div>
+
+    <!-- Header title -->
+    <div class="screen-header">
+        <span class="screen-title">选择模式</span>
+    </div>
+
+    <!-- Page dots -->
+    <div class="page-dots">
+        <span class="page-dot active"></span>
+        <span class="page-dot"></span>
+    </div>
+
+    <!-- Safe area with mode card -->
+    <div class="safe-area">
+        <div class="mode-card">
+            <span class="mode-number">1</span>
+            <span class="mode-name">菜谱模式</span>
+            <div class="mode-separator"></div>
+            <span class="mode-desc">浏览菜谱、查看步骤、导航做菜</span>
+            <span class="mode-desc">支持拍照检查烹饪状态</span>
+        </div>
+    </div>
+
+    <!-- Bottom hints (plain text, not buttons) -->
+    <div class="bottom-hints">
+        <span class="hint-text">单击 → 下一模式</span>
+        <span class="hint-text">长按 → 进入菜谱模式</span>
+        <span class="hint-text">双击 → 返回</span>
+    </div>
+
+
+    <style>
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+
+      body {
+        background: var(--glasses-bg);
+        color: var(--glasses-fg);
+        font-family: var(--font-family);
+        width: var(--screen-width);
+        height: var(--screen-height);
+        overflow: hidden;
+        user-select: none;
+        -webkit-user-select: none;
+      }
+
+      /* Header */
+      .screen-header {
+        position: absolute;
+        top: 28px;
+        left: 0;
+        right: 0;
+        height: var(--header-h);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .screen-title {
+        font-size: var(--title-size);
+        font-weight: 700;
+        color: var(--glasses-fg);
+        letter-spacing: 1px;
+      }
+
+      /* Page indicator */
+      .page-indicator {
+        position: absolute;
+        top: 32px;
+        left: 20px;
+        font-size: var(--subtitle-size);
+        color: var(--glasses-fg-muted);
+      }
+
+      /* Page dots */
+      .page-dots {
+        position: absolute;
+        top: 34px;
+        right: 20px;
+        display: flex;
+        gap: 8px;
+        align-items: center;
+      }
+
+      .page-dot {
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        border: 1px solid var(--glasses-fg-muted);
+        background: transparent;
+      }
+
+      .page-dot.active {
+        background: transparent;
+        border: 1.5px solid var(--glasses-fg);
+      }
+      .page-dot.active::after {
+        content: '';
+        display: block;
+        width: 3px;
+        height: 3px;
+        border-radius: 50%;
+        background: var(--glasses-fg);
+        margin: 1px auto 0;
+      }
+
+      /* Safe area content */
+      .safe-area {
+        position: absolute;
+        top: var(--safe-top);
+        left: 0;
+        right: 0;
+        bottom: calc(var(--screen-height) - var(--safe-bottom));
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      /* Mode card */
+      .mode-card {
+        width: 300px;
+        height: 180px;
+        border: var(--glasses-stroke-normal) solid var(--glasses-fg);
+        border-radius: 4px;
+        position: relative;
+        padding: 14px 16px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .mode-number {
+        position: absolute;
+        top: 14px;
+        left: 16px;
+        font-size: var(--body-size);
+        color: var(--glasses-fg-muted);
+      }
+
+      .mode-name {
+        font-size: 22px;
+        font-weight: 700;
+        color: var(--glasses-fg);
+        margin-top: 20px;
+        letter-spacing: 2px;
+      }
+
+      .mode-separator {
+        width: 240px;
+        height: var(--glasses-stroke-thin);
+        background: var(--glasses-fg);
+        margin-top: 14px;
+        opacity: 0.6;
+      }
+
+      .mode-desc {
+        font-size: 13px;
+        color: var(--glasses-fg-muted);
+        margin-top: 10px;
+        text-align: center;
+        letter-spacing: 0.5px;
+      }
+
+      .mode-desc + .mode-desc {
+        margin-top: 6px;
+      }
+
+      /* Bottom hints */
+      .bottom-hints {
+        position: absolute;
+        top: 560px;
+        left: 0;
+        width: 480px;
+        height: 80px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 0 20px;
+        border-top: 1px solid var(--glasses-fg-dim);
+      }
+
+      .hint-text {
+        font-size: var(--legend-size);
+        color: var(--glasses-fg-muted);
+        letter-spacing: 0.3px;
+      }
+    </style>
+</body>
+</html>

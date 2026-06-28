@@ -1,0 +1,11 @@
+{
+  "pages": [
+    "pages/recipe-draft/index",
+    "pages/cooking-guide/index",
+    "pages/check-camera/index",
+    "pages/check-result/index"
+  ],
+  "window": {
+    "navigationBarTitleText": "见味"
+  }
+}

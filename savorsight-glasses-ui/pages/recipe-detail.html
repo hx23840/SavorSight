@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>菜谱详情</title>
+    <style id="theme-vars">
+/* SavorSight Glasses Bare UI — Rokid Glasses Design System */
+
+:root {
+  /* Color */
+  --glasses-bg: #000000;
+  --glasses-fg: #00FF00;
+  --glasses-fg-dim: #00FF004D;
+  --glasses-fg-muted: #00FF00BF;
+  --glasses-stroke-thin: 1px;
+  --glasses-stroke-normal: 2px;
+  --glasses-stroke-emphasis: 2.5px;
+
+  /* State colors */
+  --state-pass: #00FF00;
+  --state-continue: #00CC00;
+  --state-adjust: #009900;
+  --state-uncertain: #006600;
+  --state-error: #003300;
+
+  /* Typography */
+  --font-family: system-ui, -apple-system, sans-serif;
+  --title-size: 15px;
+  --subtitle-size: 11px;
+  --body-size: 12px;
+  --body-large-size: 14px;
+  --caption-size: 10px;
+  --legend-size: 11px;
+  --hero-size: 17px;
+
+  /* Spacing */
+  --screen-pad-h: 10px;
+  --header-h: 34px;
+  --legend-h: 72px;
+  --panel-pad: 10px;
+  --line-gap: 6px;
+  --safe-top: 80px;
+  --safe-bottom: 560px;
+
+  /* Layout */
+  --screen-width: 480px;
+  --screen-height: 640px;
+  --safe-height: 480px;
+}
+
+@theme inline {
+  --color-background: var(--glasses-bg);
+  --color-foreground: var(--glasses-fg);
+  --color-primary: var(--glasses-fg);
+  --color-muted-foreground: var(--glasses-fg-muted);
+  --color-muted: var(--glasses-fg-dim);
+  --font-sans: var(--font-family);
+}
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4.3.1/dist/index.global.js"></script>
+    <script src="https://unpkg.com/lucide@1.8.0/dist/umd/lucide.min.js"></script>
+    <style type="text/tailwindcss">
+  
+  @layer base {
+    body { background: var(--glasses-background); color: var(--glasses-foreground); }
+    td, th { @apply break-words; word-break: break-all; word-break: auto-phrase; }
+    th { @apply whitespace-nowrap; }
+  }
+    </style>
+    <style>
+      .no-scrollbar::-webkit-scrollbar { display: none; }
+      .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+      [data-icon] {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        -webkit-mask-size: contain;
+        mask-size: contain;
+        -webkit-mask-repeat: no-repeat;
+        mask-repeat: no-repeat;
+        -webkit-mask-position: center;
+        mask-position: center;
+        background-color: currentColor;
+      }
+    </style>
+</head>
+<body style="
+  margin: 0;
+  padding: 0;
+  background: var(--glasses-bg);
+  color: var(--glasses-fg);
+  font-family: var(--font-family);
+  width: 480px;
+  height: 640px;
+  overflow: hidden;
+">
+
+  <!-- Header: title + subtitle -->
+  <div style="
+    position: absolute;
+    top: 0;
+    left: 10px;
+    right: 10px;
+    height: 80px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+  ">
+    <div style="font-size: 15px; font-weight: bold; color: var(--glasses-fg); letter-spacing: 2px;">菜谱详情</div>
+    <div style="font-size: 11px; color: var(--glasses-fg-muted);">步骤 2/4</div>
+  </div>
+
+  <!-- Safe area content -->
+  <div style="
+    position: absolute;
+    top: 80px;
+    left: 10px;
+    right: 10px;
+    height: 480px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: hidden;
+  ">
+    <!-- Page dots: 4 dots, 2nd filled -->
+    <div style="display: flex; justify-content: center; gap: 8px; margin-bottom: 16px;">
+      <span style="width: 8px; height: 8px; border: 1px solid var(--glasses-fg-dim); display: inline-block;"></span>
+      <span style="width: 8px; height: 8px; border: 1.5px solid var(--glasses-fg); display: inline-block; position: relative;"><span style="position:absolute;top:50%;left:50%;width:3px;height:3px;border-radius:50%;background:var(--glasses-fg);transform:translate(-50%,-50%);display:block;"></span></span>
+      <span style="width: 8px; height: 8px; border: 1px solid var(--glasses-fg-dim); display: inline-block;"></span>
+      <span style="width: 8px; height: 8px; border: 1px solid var(--glasses-fg-dim); display: inline-block;"></span>
+    </div>
+
+    <!-- Step label -->
+    <div style="font-size: 12px; color: var(--glasses-fg-muted); margin-bottom: 4px;">第 2 步</div>
+
+    <!-- Step title -->
+    <div style="font-size: 22px; font-weight: bold; color: var(--glasses-fg); text-align: center; margin-bottom: 10px;">炒番茄</div>
+
+    <!-- Thin green line -->
+    <div style="width: 100%; border: none; border-top: 1px solid var(--glasses-fg-muted); margin-bottom: 14px;"></div>
+
+    <!-- Instruction text -->
+    <div style="
+      font-size: 15px;
+      color: var(--glasses-fg);
+      text-align: center;
+      line-height: 1.6;
+      max-height: 100px;
+      overflow: hidden;
+      margin-bottom: 14px;
+      padding: 0 4px;
+    ">锅中留底油，放入番茄块翻炒至出汁，加少许盐和糖调味。</div>
+
+    <!-- Thin green line -->
+    <div style="width: 100%; border: none; border-top: 1px solid var(--glasses-fg-muted); margin-bottom: 14px;"></div>
+
+    <!-- Info items: plain text, no border -->
+    <div style="width: 100%; display: flex; flex-direction: column; gap: 10px;">
+      <div style="font-size: 14px; color: var(--glasses-fg);">火候  中火</div>
+      <div style="font-size: 14px; color: var(--glasses-fg);">目标  番茄软化出汁，边缘微焦</div>
+    </div>
+
+    <!-- Spacer -->
+    <div style="flex: 1;"></div>
+
+    <!-- Bottom check hint -->
+    <div style="font-size: 11px; color: var(--glasses-fg-muted); font-style: italic; margin-bottom: 8px;">此步骤可检查</div>
+  </div>
+
+  <!-- Bottom hints: plain text, no buttons -->
+  <div style="
+    position: absolute;
+    bottom: 0;
+    left: 10px;
+    right: 10px;
+    height: 80px;
+    border-top: 1px solid var(--glasses-fg-muted);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+  ">
+    <div style="font-size: 11px; color: var(--glasses-fg);">单击 → 下一步</div>
+    <div style="font-size: 11px; color: var(--glasses-fg);">长按 → 开始做菜</div>
+    <div style="font-size: 11px; color: var(--glasses-fg);">双击 → 返回</div>
+  </div>
+
+
+</body>
+</html>

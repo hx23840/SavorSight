@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>做菜导航</title>
+    <style id="theme-vars">
+/* SavorSight Glasses Bare UI — Rokid Glasses Design System */
+
+:root {
+  /* Color */
+  --glasses-bg: #000000;
+  --glasses-fg: #00FF00;
+  --glasses-fg-dim: #00FF004D;
+  --glasses-fg-muted: #00FF00BF;
+  --glasses-stroke-thin: 1px;
+  --glasses-stroke-normal: 2px;
+  --glasses-stroke-emphasis: 2.5px;
+
+  /* State colors */
+  --state-pass: #00FF00;
+  --state-continue: #00CC00;
+  --state-adjust: #009900;
+  --state-uncertain: #006600;
+  --state-error: #003300;
+
+  /* Typography */
+  --font-family: system-ui, -apple-system, sans-serif;
+  --title-size: 15px;
+  --subtitle-size: 11px;
+  --body-size: 12px;
+  --body-large-size: 14px;
+  --caption-size: 10px;
+  --legend-size: 11px;
+  --hero-size: 17px;
+
+  /* Spacing */
+  --screen-pad-h: 10px;
+  --header-h: 34px;
+  --legend-h: 72px;
+  --panel-pad: 10px;
+  --line-gap: 6px;
+  --safe-top: 80px;
+  --safe-bottom: 560px;
+
+  /* Layout */
+  --screen-width: 480px;
+  --screen-height: 640px;
+  --safe-height: 480px;
+}
+
+@theme inline {
+  --color-background: var(--glasses-bg);
+  --color-foreground: var(--glasses-fg);
+  --color-primary: var(--glasses-fg);
+  --color-muted-foreground: var(--glasses-fg-muted);
+  --color-muted: var(--glasses-fg-dim);
+  --font-sans: var(--font-family);
+}
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4.3.1/dist/index.global.js"></script>
+    <script src="https://unpkg.com/lucide@1.8.0/dist/umd/lucide.min.js"></script>
+    <style type="text/tailwindcss">
+  
+  @layer base {
+    body { background: var(--glasses-background); color: var(--glasses-foreground); }
+    td, th { @apply break-words; word-break: break-all; word-break: auto-phrase; }
+    th { @apply whitespace-nowrap; }
+  }
+    </style>
+    <style>
+      .no-scrollbar::-webkit-scrollbar { display: none; }
+      .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+      [data-icon] {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        -webkit-mask-size: contain;
+        mask-size: contain;
+        -webkit-mask-repeat: no-repeat;
+        mask-repeat: no-repeat;
+        -webkit-mask-position: center;
+        mask-position: center;
+        background-color: currentColor;
+      }
+    </style>
+</head>
+<body style="margin:0;padding:0;background:var(--glasses-bg);color:var(--glasses-fg);font-family:system-ui,-apple-system,sans-serif;width:480px;height:640px;overflow:hidden;position:relative;">
+
+    <!-- Header: title + step indicator -->
+    <div style="position:absolute;top:0;left:0;right:0;height:80px;display:flex;flex-direction:column;align-items:center;justify-content:center;">
+        <div style="font-size:20px;font-weight:bold;color:var(--glasses-fg);letter-spacing:2px;">做菜导航</div>
+        <div style="font-size:11px;color:var(--glasses-fg-muted);margin-top:6px;">1/4</div>
+    </div>
+
+    <!-- Page dots -->
+    <div style="position:absolute;top:72px;left:0;right:0;display:flex;justify-content:center;gap:10px;">
+        <div style="width:8px;height:8px;border-radius:50%;border:1.5px solid var(--glasses-fg);position:relative;"><div style="position:absolute;top:50%;left:50%;width:3px;height:3px;border-radius:50%;background:var(--glasses-fg);transform:translate(-50%,-50%);"></div></div>
+        <div style="width:8px;height:8px;border-radius:50%;border:1px solid var(--glasses-fg);"></div>
+        <div style="width:8px;height:8px;border-radius:50%;border:1px solid var(--glasses-fg);"></div>
+        <div style="width:8px;height:8px;border-radius:50%;border:1px solid var(--glasses-fg);"></div>
+    </div>
+
+    <!-- Safe area: y=80 to y=560 -->
+    <div style="position:absolute;top:80px;left:0;right:0;bottom:80px;padding:10px 12px;box-sizing:border-box;display:flex;flex-direction:column;">
+
+        <!-- Progress line: "1/4  25%" + progress bar -->
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px;">
+            <span style="font-size:11px;color:var(--glasses-fg);">1/4</span>
+            <span style="font-size:11px;color:var(--glasses-fg);">25%</span>
+        </div>
+        <!-- Stroke-only progress bar -->
+        <div style="width:100%;height:6px;border:1px solid var(--glasses-fg);box-sizing:border-box;margin-bottom:16px;"></div>
+
+        <!-- Step title -->
+        <div style="font-size:22px;font-weight:bold;color:var(--glasses-fg);text-align:center;margin-bottom:12px;">炒鸡蛋</div>
+
+        <!-- Thin green line -->
+        <div style="width:100%;height:0;border-top:1px solid var(--glasses-fg-dim);margin-bottom:12px;"></div>
+
+        <!-- Instruction -->
+        <div style="font-size:15px;color:var(--glasses-fg);text-align:center;line-height:1.6;margin-bottom:12px;">
+            鸡蛋液下锅，炒到半凝固后盛出备用。
+        </div>
+
+        <!-- Thin green line -->
+        <div style="width:100%;height:0;border-top:1px solid var(--glasses-fg-dim);margin-bottom:14px;"></div>
+
+        <!-- Labels: plain text, NO bordered tags -->
+        <div style="display:flex;justify-content:center;gap:20px;margin-bottom:14px;">
+            <span style="font-size:13px;color:var(--glasses-fg);">中火</span>
+            <span style="font-size:13px;color:var(--glasses-fg-muted);">可检查</span>
+        </div>
+
+        <!-- Target state -->
+        <div style="font-size:13px;color:var(--glasses-fg-muted);text-align:center;line-height:1.5;margin-bottom:auto;">
+            目标: 鸡蛋半凝固，表面仍略湿润
+        </div>
+
+        <!-- Voice hint -->
+        <div style="font-size:10px;color:var(--glasses-fg-muted);text-align:center;margin-top:12px;opacity:0.6;">
+            语音已播报
+        </div>
+
+    </div>
+
+    <!-- Bottom hints: plain text, NO buttons -->
+    <div style="position:absolute;top:560px;left:0;right:0;height:80px;display:flex;flex-direction:column;align-items:center;justify-content:center;border-top:1px solid var(--glasses-fg-dim);">
+        <div style="font-size:11px;color:var(--glasses-fg-muted);">单击 → 朗读步骤</div>
+        <div style="font-size:11px;color:var(--glasses-fg-muted);margin-top:5px;">长按 → 拍照检查</div>
+        <div style="font-size:11px;color:var(--glasses-fg-muted);margin-top:5px;">双击 → 结束做菜</div>
+    </div>
+
+</body>
+</html>
